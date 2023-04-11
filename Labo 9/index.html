@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Labo 9</title>
+  </head>
+  <body>
+    <div id="username-form">
+      <span>Username</span>
+      <input id="username"/> <button id="username-submit">Submit</button>
+    </div>
+    <div id="chat" style="display: none;">
+      <ul id="messages"> </ul>
+      <form id="form" action="">
+        <input id="input" autocomplete="off"/> <button>Send</button>
+      </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let username = '';
+
+      document.getElementById('username-submit').addEventListener('click',()=> {
+        const usernameInput = document.getElementById('username').value;
+        if(usernameInput.length !== 0){
+          username = usernameInput;
+
+          document.getElementById('username-form').style = 'display:none;';
+          document.getElementById('chat').style = ''
+
+          const socket = io();
+
+          const messages = document.getElementById('messages');
+          const form = document.getElementById('form');
+          const input = document.getElementById('input')
+
+          form.addEventListener('submit',(event)=>{
+            event.preventDefault();
+            if(input.value){
+              socket.emit('sendingMessageFromClient', {username, message:input.value});
+              input.value='';
+            };
+          });
+
+          socket.on('broadcastMessageFromServer',({username:name, message}) =>{
+            const item = document.createElement('li');
+            item.textContent = name + ": " + message;
+            messages.appendChild(item);
+          });
+
+
+        }
+      })
+    </script>
+  </body>
+</html>
