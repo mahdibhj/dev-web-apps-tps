@@ -1,0 +1,2 @@
+export const geoLocationApiKey = "AIzaSyBvyd5FMuIV5BJdlk5JgsXXfzQQaFUdq-M"
+    // Je n'ai pas été capable d'avoir cette clé car j'ai perdu mon portefeuille depuis quelques jours et je n'ai pas trouvé un moyen pour vérifier le compte et avoir la version test de l'api

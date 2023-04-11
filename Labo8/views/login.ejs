@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Labo8</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+    <script>
+        async function login() {
+            let username = document.getElementById('usernameInput').value;
+            let password = document.getElementById('passwordInput').value;
+            const response = await fetch('/login', {
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+                method: 'POST',
+            })
+            if (response.status === 200) {
+                Cookies.set('awesome_cookie', (await response.json()).token)
+                window.location.replace('/')
+            } else {
+                console.log('NOP...')
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>
+            LOGIN PAGE
+        </h1>
+        <div>
+            <label>Username </label>
+            <input id="usernameInput">
+        </div>
+        <div>
+            <label>Password </label>
+            <input id="passwordInput" , type="password">
+        </div>
+        <button id="loginBtn" , onclick="login()">Login</button>
+    </div>
+</body>
+
+</html>

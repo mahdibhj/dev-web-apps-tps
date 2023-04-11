@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script type="module" src="./App.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+
+    <title>TASKS MANAGER</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="inputValue" placeholder = "write a new task..">
+      <button :disabled="inputValue === ''" @click="createTodo">Create</button>
+      <div v-for="todo in todos" :key="todo.id">
+        <input v-model="todo.name">
+        <button @click="updateTodo(todo)">Save</button>
+        <button @click="deleteTodo(todo)">Delete</button>
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </body>
+
+
+</html>

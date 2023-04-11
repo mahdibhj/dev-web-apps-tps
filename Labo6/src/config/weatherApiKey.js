@@ -1,0 +1,1 @@
+export const weatherApiKey = "a38d1a557d0744399e1fd2d916d75858"
